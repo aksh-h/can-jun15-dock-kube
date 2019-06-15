@@ -1,0 +1,19 @@
+login as: docker
+docker@192.168.99.140's password:
+                         _             _
+            _         _ ( )           ( )
+  ___ ___  (_)  ___  (_)| |/')  _   _ | |_      __
+/' _ ` _ `\| |/' _ `\| || , <  ( ) ( )| '_`\  /'__`\
+| ( ) ( ) || || ( ) || || |\`\ | (_) || |_) )(  ___/
+(_) (_) (_)(_)(_) (_)(_)(_) (_)`\___/'(_,__/'`\____)
+
+$ cat /etc/os-release
+NAME=Buildroot
+VERSION=2017.11
+ID=buildroot
+VERSION_ID=2017.11
+PRETTY_NAME="Buildroot 2017.11"
+$ ps -ef | grep dockerd
+root      2406     1  7 05:13 ?        00:03:25 /usr/bin/dockerd -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --tlsverify --tlscacert /etc/docker/ca.pem --tlscert /etc/docker/server.pem --tlskey /etc/docker/server-key.pem --label provider=virtualbox --insecure-registry 10.96.0.0/12
+docker   17148 16782  0 06:00 pts/0    00:00:00 grep dockerd
+$
