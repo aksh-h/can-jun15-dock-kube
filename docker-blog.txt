@@ -1,0 +1,11 @@
+
+docker network create ghost-net
+docker network create wp-net
+
+docker container run -d -e MYSQL_ROOT_PASSWORD=welcome --name blog-db --network ghost-net mysql:5.7
+
+docker network connect wp-net blog-db
+
+docker container run -d -p 9999:2368 -e database__client=mysql -e database__connection__host=blog-db -e database__connection__port=3306 -e database__connection__user=root -e database__connection__password=welcome -e database__connection__database=ghost --name blog-ghost --network ghost-net ghost:1-alpine
+
+docker container run -d -p 9998:80 -e WORDPRESS_DB_HOST=blog-db -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=welcome -e WORDPRESS_DB_NAME=wordpress -e WORDPRESS_TABLE_PREFIX=wp --name blog-wp --network wp-net wordpress
