@@ -1,0 +1,22 @@
+BUILD a build-machine image:
+
+1. Get jenkins image: jenkinsci/jenkins:lts
+2. Build a new image on the top of jenkins image by running the below commands as user root
+# update the repository cache
+apt-get update -qq
+# Install docker prerequisites
+apt-get install -qqy apt-transport-https ca-certificates curl gnupg2 software-properties-common
+# download the docker key
+curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+# add the repo key
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
+# update the repo cache
+apt-get update  -qq
+# install docker
+apt-get install docker-ce=17.09.0~ce-0~debian -y
+# Add jenkins user to the group docker
+
+TO RUN
+1. Mount /var/run/docker.sock
+2. Mount a location to hold jenkins content
+3. Expose jenkins port
